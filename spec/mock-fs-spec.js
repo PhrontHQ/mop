@@ -1,5 +1,5 @@
 var optimize = require("../optimize");
-var MockFs = require("q-io/fs-mock");
+var MockFs = require("montage/core/promise-io/fs-mock");
 
 describe("Mock FS", function () {
     var mockFs;

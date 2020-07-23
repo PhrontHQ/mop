@@ -1,6 +1,6 @@
 /*global describe,before,it,expect,after */
 var bundle = require("../lib/bundle");
-var MockFs = require("q-io/fs-mock");
+var MockFs = require("montage/core/promise-io/fs-mock");
 var Q = require("bluebird");
 
 describe("Bundle", function() {

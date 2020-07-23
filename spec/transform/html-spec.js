@@ -1,7 +1,7 @@
 /*global describe,beforeEach,it,expect */
 var transformHtml = require('../../lib/transform/html');
 var minifyHtml = require("html-minifier").minify;
-var MockFs = require("q-io/fs-mock");
+var MockFs = require("montage/core/promise-io/fs-mock");
 
 var File = require("../../lib/file");
 
