@@ -30,7 +30,6 @@
     "jshint": "^2.10.2",
     "minidom": "~1.0.0",
     "montage": "github:marchant/montage#montage-19",
-    "mr": "montagejs/mr#master",
     "object-foreach": "^0.1.2",
     "object-keys": "^1.0.12",
     "object.values": "^1.0.4",
