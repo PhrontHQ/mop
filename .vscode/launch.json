@@ -7,14 +7,30 @@
         {
             "type": "node",
             "request": "launch",
-            "name": "Launch Program",
-            "cwd": "${workspaceRoot}",
-            "runtimeExecutable": "${workspaceRoot}/node.sh",
-            "program": "${workspaceRoot}/optimize.js",
-            "args": ["../etiama"],
-            "env": {
-                "NODE_ENV": "development"
-            }
-        }
+            "name": "mop popcorn",
+            "runtimeVersion": "12.18.4",
+            "runtimeArgs": [
+                "${workspaceFolder}/optimize.js",
+                "../popcorn"
+            ],
+            "trace": false,
+            "enableContentValidation": false,
+            "skipFiles": [
+                "<node_internals>/**"
+            ]
+        },
+        {
+            "type": "node",
+            "request": "launch",
+            "name": "Run tests via NPM",
+            "runtimeExecutable": "npm",
+            "cwd": "${workspaceFolder}",
+            "runtimeArgs": [
+                "run-script",
+                "test"
+            ]
+        },
+
+
     ]
 }
