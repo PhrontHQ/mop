@@ -36,7 +36,7 @@
     "optimist": "~0.6.1",
     "q-io": "marchant/q-io#bluebird-q-io",
     "semver": "~6.3.0",
-    "uglify-js": "~3.6.0",
+    "uglify-js": "~3.13.3",
     "url2": "~1.0.4"
   },
   "devDependencies": {
