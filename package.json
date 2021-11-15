@@ -30,7 +30,6 @@
     "jshint": "^2.10.2",
     "minidom": "~1.0.0",
     "montage": "github:marchant/montage#montage-19",
-    "object-foreach": "^0.1.2",
     "optimist": "~0.6.1",
     "q-io": "marchant/q-io#bluebird-q-io",
     "semver": "~6.3.0",
