@@ -18,7 +18,8 @@ describe("Mock FS", function () {
             return mockFs.list("/builds");
         })
         .then(function (list) {
-            return mockFs.read("/builds/" + list[1] + "/package.json.load.js");
+            const id = /[^@]*$/.exec(list[1])[0];
+            return mockFs.read("/builds/" + list[1] + "/" + id + "/package.json.load.js");
         })
         .then(function (content) {
             expect(content.indexOf("montageDefine(")).toBe(0);
