@@ -1,7 +1,7 @@
 /*global describe,beforeEach,it,expect */
 var transformHtml = require('../../lib/transform/html');
 var minifyHtml = require("html-minifier").minify;
-var MockFs = require("q-io/fs-mock");
+var MockFs = require("montage/core/promise-io/fs-mock");
 
 var File = require("../../lib/file");
 
@@ -17,7 +17,7 @@ describe("transform/html", function () {
     });
 
     it("continues when inline JavaScript can't be minified", function () {
-        var original = '<html><head><script>function</script></head><body><p>text</p></body></html>';
+        var original = '<html><head><script>function test(){}</script></head><body><p>text</p></body></html>';
 
         var file = new File({
             fs: mockFs,

@@ -1,5 +1,5 @@
 var File = require("../lib/file");
-var MockFs = require("q-io/fs-mock");
+var MockFs = require("montage/core/promise-io/fs-mock");
 
 describe("File", function () {
 

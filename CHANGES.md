@@ -1,3 +1,7 @@
+##19.0.0
+- From, adds ability to debug with specic node version in vscode, from https://github.com/seanfisher/nvm-vscode/
+
+
 ## 16.1.7
 - Fix Object.values|keys|clone due q-io/collections shim leak fix
 

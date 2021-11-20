@@ -20,25 +20,21 @@
     "integration": "MOP_VERSION=. mop-integration"
   },
   "engines": {
-    "node": ">=8.2.1",
-    "npm": ">=6.7.0"
+    "node": ">=10.16.2",
+    "npm": ">=6.9.0"
   },
   "dependencies": {
     "bluebird": "~3.5.5",
-    "csso": "~1.3",
+    "csso": "~4.2.0",
     "html-minifier": "^3.4.3",
-    "jshint": "^2.9.4",
+    "jshint": "^2.10.2",
     "minidom": "~1.0.0",
-    "montage": "montagejs/montage#master",
-    "mr": "montagejs/mr#master",
-    "object-foreach": "^0.1.2",
-    "object-keys": "^1.0.12",
-    "object.values": "^1.0.4",
+    "montage": "github:marchant/montage#montage-19",
     "optimist": "~0.6.1",
-    "q-io": "^1.13.6",
-    "semver": "~5.1",
-    "uglify-js": "~2.6",
-    "url2": "~1.0.1"
+    "q-io": "marchant/q-io#bluebird-q-io",
+    "semver": "~6.3.0",
+    "uglify-js": "~3.13.3",
+    "url2": "~1.0.4"
   },
   "devDependencies": {
     "jasmine-node": "~1.14",

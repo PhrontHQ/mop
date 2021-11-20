@@ -2,6 +2,7 @@
 .tmp
 .idea
 .DS_Store
+.nvm-node
 atlassian-ide-plugin.xml
 npm-debug.log
 report/

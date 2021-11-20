@@ -1,0 +1,36 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "type": "node",
+            "request": "launch",
+            "name": "mop plum-appointments",
+            "runtimeVersion": "14.16.0",
+            "runtimeArgs": [
+                "${workspaceFolder}/optimize.js",
+                "../popcorn"
+            ],
+            "trace": false,
+            "enableContentValidation": false,
+            "skipFiles": [
+                "<node_internals>/**"
+            ]
+        },
+        {
+            "type": "node",
+            "request": "launch",
+            "name": "Run tests via NPM",
+            "runtimeExecutable": "npm",
+            "cwd": "${workspaceFolder}",
+            "runtimeArgs": [
+                "run-script",
+                "test"
+            ]
+        },
+
+
+    ]
+}
