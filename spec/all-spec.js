@@ -1,4 +1,4 @@
-var FS = require("montage/core/promise-io/fs");
+var FS = require("q-io/fs");
 var PATH = require("path");
 
 var RELATIVE_LIB = PATH.join("..", "lib");

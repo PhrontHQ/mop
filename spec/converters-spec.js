@@ -11,13 +11,13 @@ describe("Converters", function () {
     });
 
     it("converts a buffer to a string", function () {
-        var buffer = Buffer.from("Hello, World!", "utf8");
+        var buffer = new Buffer("Hello, World!", "utf8");
         var string = Converters.from(buffer, "buffer").to("utf8").content;
         expect(string).toBe("Hello, World!");
     });
 
     it("converts a buffer to a document and back to a string", function () {
-        var buffer = Buffer.from("<!DOCTYPE html><html><head></head><body><h1>Hello</h1></body></html>", "utf8");
+        var buffer = new Buffer("<!DOCTYPE html><html><head></head><body><h1>Hello</h1></body></html>", "utf8");
         var document = Converters.from(buffer, "buffer").to("document").content;
         var string = Converters.from(document, "document").to("utf8").content;
         expect(string.trim()).toBe("<!DOCTYPE html><html><head></head><body><h1>Hello</h1></body></html>");

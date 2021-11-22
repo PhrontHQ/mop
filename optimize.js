@@ -9,7 +9,7 @@ var Path = require("path");
 var build = require("./lib/build");
 var spinner = require("./lib/spinner");
 var Location = require("./lib/location");
-var mr = require("montage/core/mr/require");
+var mr = require("mr/require");
 
 /**
  * Optimize the package at the given location.
@@ -59,7 +59,7 @@ function optimize(location, config) {
     }
 
     // mainly here so that fs can be mocked out for testing
-    var fs = config.fs || require("montage/core/promise-io/fs");
+    var fs = config.fs || require("q-io/fs");
     function read(location) {
         var path = Location.toPath(location);
         return fs.read(path);
