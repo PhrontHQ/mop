@@ -1,6 +1,6 @@
 /*global describe,before,it,expect,after */
 var appcache = require("../lib/appcache");
-var MockFs = require("montage/core/promise-io/fs-mock");
+var MockFs = require("q-io/fs-mock");
 
 describe("Appcache", function() {
     var appPackage, config, mockFs;

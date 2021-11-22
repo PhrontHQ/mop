@@ -1,5 +1,5 @@
 var optimize = require("../optimize");
-var MockFs = require("montage/core/promise-io/fs-mock");
+var MockFs = require("q-io/fs-mock");
 
 describe("Mock FS", function () {
     var mockFs;
@@ -18,8 +18,7 @@ describe("Mock FS", function () {
             return mockFs.list("/builds");
         })
         .then(function (list) {
-            const id = /[^@]*$/.exec(list[1])[0];
-            return mockFs.read("/builds/" + list[1] + "/" + id + "/package.json.load.js");
+            return mockFs.read("/builds/" + list[1] + "/package.json.load.js");
         })
         .then(function (content) {
             expect(content.indexOf("montageDefine(")).toBe(0);
