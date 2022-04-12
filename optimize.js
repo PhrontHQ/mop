@@ -40,6 +40,11 @@ module.exports = optimize;
 function optimize(location, config) {
     config = config || {};
 
+    var pathLocation =  location
+    if(!pathLocation.endsWith(Path.sep)) {
+        pathLocation += Path.sep;
+    }
+
     location =  Location.fromPath(location, true);
 
     if (config.out) {
@@ -61,11 +66,11 @@ function optimize(location, config) {
     // mainly here so that fs can be mocked out for testing
     var fs = config.fs || require("montage/core/promise-io/fs");
     function read(location) {
-        var path = Location.toPath(location);
+        var path = location.startsWith("file://") ? Location.toPath(location) : location;
         return fs.read(path);
     }
 
-    return mr.loadPackageLock({ location: location })
+    return mr.loadPackageLock({ location: pathLocation })
     .then(function (packageLock) {
         return build(location, {
             // configurable
