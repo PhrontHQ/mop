@@ -11,6 +11,12 @@ var spinner = require("./lib/spinner");
 var Location = require("./lib/location");
 var mr = require("montage/core/mr/require");
 
+/*
+    this manual load should not be necessary, a method defined in this file is loaded in montage before mr gets to run, so it works out, but not here. This should be fixed in montage, but leaving this here won't do any harm
+*/
+
+require("montage/core/extras/string");
+
 /**
  * Optimize the package at the given location.
  * @function
