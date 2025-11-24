@@ -40,7 +40,7 @@ module.exports = optimize;
 function optimize(location, config) {
     config = config || {};
 
-    location =  Location.fromPath(location, true);
+    location = Location.fromPath(location, true);
 
     if (config.out) {
         // Fill in any missing output functions
@@ -65,25 +65,24 @@ function optimize(location, config) {
         return fs.read(path);
     }
 
-    return mr.loadPackageLock({ location: location })
-    .then(function (packageLock) {
+    return mr.loadPackageLock({ location: location }).then(function (packageLock) {
         return build(location, {
             // configurable
             buildLocation: URL.resolve(location, (config.buildLocation || "builds") + "/"),
-            minify:       config.minify !== void 0 ? !!config.minify             : true,
-            lint:         config.lint !== void 0 ? !!config.lint                 : false,
-            noCss:        config.noCss !== void 0 ? !!config.noCss               : false,
+            minify: config.minify !== void 0 ? !!config.minify : true,
+            lint: config.lint !== void 0 ? !!config.lint : false,
+            noCss: config.noCss !== void 0 ? !!config.noCss : false,
             cssEmbedding: config.cssEmbedding !== void 0 ? !!config.cssEmbedding : true,
-            delimiter:    config.delimiter !== void 0 ? config.delimiter         : "@",
-            out:          config.out                                      || spinner,
+            delimiter: config.delimiter !== void 0 ? config.delimiter : "@",
+            out: config.out || spinner,
 
-            fs:         fs,
-            read:       read,
+            fs: fs,
+            read: read,
 
             // non-configurable
             overlays: ["browser"],
             production: true,
-            packageLock: packageLock
+            packageLock: packageLock,
         });
     });
 
@@ -118,32 +117,31 @@ function version() {
 }
 
 function main() {
-
-
     var Options = require("optimist");
 
-    var argv = Options
-    .boolean([
+    var argv = Options.boolean([
         //"f", "force",
-        "l", "lint",
+        "l",
+        "lint",
         //"c", "copyright",
         //"s", "shared",
         //"m", "manifest",
         //"b", "bundle",
-        "h", "help",
-        "v", "version",
+        "h",
+        "help",
+        "v",
+        "version",
         "css",
-        "css-embedding"
+        "css-embedding",
     ])
-    .default("optimize", "1")
-    .alias("o", "optimize")
-    .default("lint", false)
-    .alias("l", "lint")
-    .default("delimiter", "@")
-    .alias("d", "delimiter")
-    .default("css", true)
-    .default("css-embedding", true)
-    .argv;
+        .default("optimize", "1")
+        .alias("o", "optimize")
+        .default("lint", false)
+        .alias("l", "lint")
+        .default("delimiter", "@")
+        .alias("d", "delimiter")
+        .default("css", true)
+        .default("css-embedding", true).argv;
 
     if (argv.h || argv.help) {
         return usage();
@@ -171,13 +169,15 @@ function main() {
         lint: argv.l || argv.lint,
         noCss: !argv.css,
         cssEmbedding: argv["css-embedding"],
-        delimiter: argv.delimiter
-    }).catch(function (err) {
-        console.error(err);
-        exitCode = 1;
-    }).then(function () {
-        process.exit(exitCode);
-    });
+        delimiter: argv.delimiter,
+    })
+        .catch(function (err) {
+            console.error(err);
+            exitCode = 1;
+        })
+        .then(function () {
+            process.exit(exitCode);
+        });
 }
 
 function noop() {}

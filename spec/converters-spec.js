@@ -1,8 +1,6 @@
-
 var Converters = require("../lib/converters");
 
 describe("Converters", function () {
-
     it("converts a string to a buffer", function () {
         var utf8 = "Hello, World!";
         var converter = Converters.from(utf8, "utf8");
@@ -22,6 +20,4 @@ describe("Converters", function () {
         var string = Converters.from(document, "document").to("utf8").content;
         expect(string.trim()).toBe("<!DOCTYPE html><html><head></head><body><h1>Hello</h1></body></html>");
     });
-
 });
-

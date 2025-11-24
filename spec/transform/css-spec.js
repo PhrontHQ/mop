@@ -1,12 +1,12 @@
 /*global describe,beforeEach,it,expect */
 
-var SandboxedModule = require('sandboxed-module');
-var transformCss = SandboxedModule.require('../../lib/transform/css', {
+var SandboxedModule = require("sandboxed-module");
+var transformCss = SandboxedModule.require("../../lib/transform/css", {
     requires: {
-        '../rebase': function () {
+        "../rebase": function () {
             return "pass";
-        }
-    }
+        },
+    },
 });
 var rebaseCss = transformCss.rebase;
 
@@ -14,7 +14,7 @@ describe("transform/css", function () {
     var fileMock;
     beforeEach(function () {
         fileMock = {
-            path: "test.css"
+            path: "test.css",
         };
     });
 
@@ -37,8 +37,8 @@ describe("transform/css", function () {
             out: {
                 warn: function () {
                     warnings.push(Array.prototype.join.call(arguments, " "));
-                }
-            }
+                },
+            },
         };
 
         var output = rebaseCss(input, fileMock, config);
@@ -53,8 +53,8 @@ describe("transform/css", function () {
             out: {
                 warn: function () {
                     warnings.push(Array.prototype.join.call(arguments, " "));
-                }
-            }
+                },
+            },
         };
 
         var output = rebaseCss(input, fileMock, config);
@@ -70,5 +70,4 @@ describe("transform/css", function () {
         var output = rebaseCss(input, fileMock, {});
         expect(output).toBe("body{background:url(pass)}");
     });
-
 });

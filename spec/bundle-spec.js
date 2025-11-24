@@ -3,21 +3,21 @@ var bundle = require("../lib/bundle");
 var MockFs = require("q-io/fs-mock");
 var Q = require("bluebird");
 
-describe("Bundle", function() {
+describe("Bundle", function () {
     var content, file, config;
     beforeEach(function () {
         file = {
             relativeLocation: "name.html",
             package: {
-                buildLocation: "/"
-            }
+                buildLocation: "/",
+            },
         };
         config = {
             fs: MockFs(),
             files: {},
             out: {
-                log: function () {}
-            }
+                log: function () {},
+            },
         };
         content = ["function one(){}", "function two(){}"];
     });
@@ -50,24 +50,24 @@ describe("Bundle", function() {
         });
     });
 
-    describe("collectPreloadBundles", function() {
-        it("should collect two modules that don't depend on each other into the same bundle", function(done) {
+    describe("collectPreloadBundles", function () {
+        it("should collect two modules that don't depend on each other into the same bundle", function (done) {
             var bundler = {
                 packageDescription: {
-                    bundle: [["foo", "bar"]]
+                    bundle: [["foo", "bar"]],
                 },
-                getPackage: function(location) {
+                getPackage: function (location) {
                     return {
-                        location: location
+                        location: location,
                     };
-                }
+                },
             };
             var loader = {
-                deepLoad: function(id) {
+                deepLoad: function (id) {
                     this.packages["app/"].modules[id] = {
                         location: id,
                         type: "javascript",
-                        bundled: false
+                        bundled: false,
                     };
                     return Q.resolve();
                 },
@@ -75,21 +75,23 @@ describe("Bundle", function() {
                 packages: {
                     "app/": {
                         bundled: true,
-                        modules: {}
-                    }
-                }
+                        modules: {},
+                    },
+                },
             };
             var config = {
                 files: {
-                    "app/foo.load.js": {utf8: "app/foo.load.js"},
-                    "app/bar.load.js": {utf8: "app/bar.load.js"}
-                }
+                    "app/foo.load.js": { utf8: "app/foo.load.js" },
+                    "app/bar.load.js": { utf8: "app/bar.load.js" },
+                },
             };
 
-            bundle.collectPreloadBundles(loader, bundler, config)
-            .then(function(bundle) {
-                expect(bundle).toEqual([[["app/foo.load.js", "app/bar.load.js"]]]);
-            }).then(done, done);
+            bundle
+                .collectPreloadBundles(loader, bundler, config)
+                .then(function (bundle) {
+                    expect(bundle).toEqual([[["app/foo.load.js", "app/bar.load.js"]]]);
+                })
+                .then(done, done);
         });
     });
 });
