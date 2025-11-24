@@ -1,16 +1,16 @@
 {
     "name": "mop",
     "version": "18.0.0",
-    "title": "Montage Optimizer",
-    "description": "Optimizes Montage applications for production by minifying, to reduce file size, and creating bundles, to reduce the number of requests.",
+    "title": "Mod Optimizer",
+    "description": "Optimizes Mod applications for production by minifying, to reduce file size, and creating bundles, to reduce the number of requests.",
     "keywords": [
-        "montage",
+        "mod",
         "optimization",
         "production"
     ],
     "repository": {
         "type": "git",
-        "url": "https://github.com/montagejs/mop.git"
+        "url": "https://github.com/PhrontHQ/mop.git"
     },
     "license": "BSD-3-Clause",
     "main": "optimize.js",
@@ -29,8 +29,7 @@
         "html-minifier": "^3.4.3",
         "jshint": "^2.9.4",
         "minidom": "~1.0.0",
-        "montage": "montagejs/montage#master",
-        "mr": "montagejs/mr#master",
+        "mod": "github:PhrontHQ/mod#main",
         "object-foreach": "^0.1.2",
         "object-keys": "^1.0.12",
         "object.values": "^1.0.4",
@@ -43,7 +42,6 @@
     "devDependencies": {
         "istanbul": "~0.4",
         "jasmine-node": "~1.14",
-        "mop-integration": "git://github.com/montagejs/mop-integration.git#master",
         "prettier": "3.6.2",
         "sandboxed-module": "~2.0"
     },
