@@ -20,8 +20,8 @@
         "integration": "MOP_VERSION=. mop-integration"
     },
     "engines": {
-        "node": ">=8.2.1",
-        "npm": ">=6.7.0"
+        "node": ">=20.0.0",
+        "npm": ">=7.0.0"
     },
     "dependencies": {
         "bluebird": "~3.5.5",
