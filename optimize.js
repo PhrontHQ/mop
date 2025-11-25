@@ -9,7 +9,7 @@ var Path = require("path");
 var build = require("./lib/build");
 var spinner = require("./lib/spinner");
 var Location = require("./lib/location");
-var mr = require("mr/require");
+var mr = require("mod/core/mr/require");
 
 /**
  * Optimize the package at the given location.
