@@ -1,7 +1,7 @@
 /*global describe,beforeEach,it,expect */
-var transformHtml = require('../../lib/transform/html');
+var transformHtml = require("../../lib/transform/html");
 var minifyHtml = require("html-minifier").minify;
-var MockFs = require("montage/core/promise-io/fs-mock");
+var MockFs = require("q-io/fs-mock");
 
 var File = require("../../lib/file");
 
@@ -17,29 +17,29 @@ describe("transform/html", function () {
     });
 
     it("continues when inline JavaScript can't be minified", function () {
-        var original = '<html><head><script>function test(){}</script></head><body><p>text</p></body></html>';
+        var original = "<html><head><script>function</script></head><body><p>text</p></body></html>";
 
         var file = new File({
             fs: mockFs,
             utf8: original,
             package: {
-                getPackage: function() {
+                getPackage: function () {
                     return {
                         buildLocation: "",
-                        packageDescription: {}
+                        packageDescription: {},
                     };
                 },
-                files: {}
-            }
+                files: {},
+            },
         });
 
         var config = {
             minify: true,
             out: {
-                warn: function() {}
+                warn: function () {},
             },
             files: {},
-            fs: mockFs
+            fs: mockFs,
         };
 
         transformHtml(file, config);
@@ -47,7 +47,7 @@ describe("transform/html", function () {
     });
 
     it("sets correct filenames for transformed file", function () {
-        var original = '<p>text</p>';
+        var original = "<p>text</p>";
 
         var file = new File({
             fs: mockFs,
@@ -56,20 +56,20 @@ describe("transform/html", function () {
             buildLocation: "build.html",
             relativeLocation: "relative.html",
             package: {
-                getPackage: function() {
+                getPackage: function () {
                     return {
                         buildLocation: "",
-                        packageDescription: {}
+                        packageDescription: {},
                     };
                 },
-                files: {}
-            }
+                files: {},
+            },
         });
 
         var config = {
-            out: { warn: function() {} },
+            out: { warn: function () {} },
             files: {},
-            fs: mockFs
+            fs: mockFs,
         };
 
         transformHtml(file, config);

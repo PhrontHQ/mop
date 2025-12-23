@@ -9,7 +9,7 @@ var Path = require("path");
 var build = require("./lib/build");
 var spinner = require("./lib/spinner");
 var Location = require("./lib/location");
-var mr = require("montage/core/mr/require");
+var mr = require("mod/core/mr/require");
 
 /*
     this manual load should not be necessary, a method defined in this file is loaded in montage before mr gets to run, so it works out, but not here. This should be fixed in montage, but leaving this here won't do any harm
@@ -53,6 +53,7 @@ function optimize(location, config) {
 
     location =  Location.fromPath(location, true);
 
+
     if (config.out) {
         // Fill in any missing output functions
         if (!config.out.log) {
@@ -70,7 +71,7 @@ function optimize(location, config) {
     }
 
     // mainly here so that fs can be mocked out for testing
-    var fs = config.fs || require("montage/core/promise-io/fs");
+    var fs = config.fs || require("q-io/fs");
     function read(location) {
         var path = location.startsWith("file://") ? Location.toPath(location) : location;
         return fs.read(path);
@@ -78,23 +79,26 @@ function optimize(location, config) {
 
     return mr.loadPackageLock({ location: pathLocation })
     .then(function (packageLock) {
+// =======
+//     return mr.loadPackageLock({ location: location }).then(function (packageLock) {
+// >>>>>>> feature/support-mod
         return build(location, {
             // configurable
             buildLocation: URL.resolve(location, (config.buildLocation || "builds") + "/"),
-            minify:       config.minify !== void 0 ? !!config.minify             : true,
-            lint:         config.lint !== void 0 ? !!config.lint                 : false,
-            noCss:        config.noCss !== void 0 ? !!config.noCss               : false,
+            minify: config.minify !== void 0 ? !!config.minify : true,
+            lint: config.lint !== void 0 ? !!config.lint : false,
+            noCss: config.noCss !== void 0 ? !!config.noCss : false,
             cssEmbedding: config.cssEmbedding !== void 0 ? !!config.cssEmbedding : true,
-            delimiter:    config.delimiter !== void 0 ? config.delimiter         : "@",
-            out:          config.out                                      || spinner,
+            delimiter: config.delimiter !== void 0 ? config.delimiter : "@",
+            out: config.out || spinner,
 
-            fs:         fs,
-            read:       read,
+            fs: fs,
+            read: read,
 
             // non-configurable
             overlays: ["browser"],
             production: true,
-            packageLock: packageLock
+            packageLock: packageLock,
         });
     });
 
@@ -129,32 +133,31 @@ function version() {
 }
 
 function main() {
-
-
     var Options = require("optimist");
 
-    var argv = Options
-    .boolean([
+    var argv = Options.boolean([
         //"f", "force",
-        "l", "lint",
+        "l",
+        "lint",
         //"c", "copyright",
         //"s", "shared",
         //"m", "manifest",
         //"b", "bundle",
-        "h", "help",
-        "v", "version",
+        "h",
+        "help",
+        "v",
+        "version",
         "css",
-        "css-embedding"
+        "css-embedding",
     ])
-    .default("optimize", "1")
-    .alias("o", "optimize")
-    .default("lint", false)
-    .alias("l", "lint")
-    .default("delimiter", "@")
-    .alias("d", "delimiter")
-    .default("css", true)
-    .default("css-embedding", true)
-    .argv;
+        .default("optimize", "1")
+        .alias("o", "optimize")
+        .default("lint", false)
+        .alias("l", "lint")
+        .default("delimiter", "@")
+        .alias("d", "delimiter")
+        .default("css", true)
+        .default("css-embedding", true).argv;
 
     if (argv.h || argv.help) {
         return usage();
@@ -182,13 +185,15 @@ function main() {
         lint: argv.l || argv.lint,
         noCss: !argv.css,
         cssEmbedding: argv["css-embedding"],
-        delimiter: argv.delimiter
-    }).catch(function (err) {
-        console.error(err);
-        exitCode = 1;
-    }).then(function () {
-        process.exit(exitCode);
-    });
+        delimiter: argv.delimiter,
+    })
+        .catch(function (err) {
+            console.error(err);
+            exitCode = 1;
+        })
+        .then(function () {
+            process.exit(exitCode);
+        });
 }
 
 function noop() {}

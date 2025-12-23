@@ -1,32 +1,34 @@
 language: node_js
 node_js:
-  - 10
+    - 6
+    - 8
+    - 10
 script: npm run $COMMAND
 env:
-  - COMMAND=test
-  - COMMAND=integration MR_VERSION="#master"
-  - COMMAND=integration MR_VERSION="18.0.0"
-  - COMMAND=integration MONTAGE_VERSION="#master"
-  - COMMAND=integration MONTAGE_VERSION="#18.0.0"
+    - COMMAND=test
+    - COMMAND=integration MR_VERSION="#master"
+    - COMMAND=integration MR_VERSION="18.0.0"
+    - COMMAND=integration MONTAGE_VERSION="#master"
+    - COMMAND=integration MONTAGE_VERSION="#18.0.0"
 jobs:
     include:
-      - stage: deploy
-        node_js: 10
-        script: skip
-        env:
-        deploy:
-            provider: npm
-            email: "${NPM_EMAIL}"
-            api_key: "${NPM_API_KEY}"
-            on:
-                tags: true
+        - stage: deploy
+          node_js: 4
+          script: skip
+          env:
+          deploy:
+              provider: npm
+              email: "${NPM_EMAIL}"
+              api_key: "${NPM_API_KEY}"
+              on:
+                  tags: true
 stages:
-  - test
-  - deploy
+    - test
+    - deploy
 notifications:
-  irc:
-    channels:
-      - "chat.freenode.net#montage"
-    on_success: false
-    template:
-      - "%{author} broke the %{repository} tests on %{branch}: %{build_url}"
+    irc:
+        channels:
+            - "chat.freenode.net#montage"
+        on_success: false
+        template:
+            - "%{author} broke the %{repository} tests on %{branch}: %{build_url}"
