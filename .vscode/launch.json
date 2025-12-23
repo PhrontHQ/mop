@@ -8,6 +8,18 @@
             "cwd": "${env:POPCORN_APP_LOCATION}",
             "program": "${workspaceFolder}/optimize.js",
             "envFile": "${workspaceFolder}/.env.local"
+        },
+        {
+            "type": "node",
+            "request": "launch",
+            "name": "Build Ford Path",
+            "skipFiles": [
+                "<node_internals>/**"
+            ],
+            "program": "${workspaceFolder}/optimize.js",
+            "cwd": "${workspaceFolder}/../ford-path.mod/",
+            "args": ["apps/ford-path", "-t", "${workspaceFolder}/../ford-path.mod/builds/"]
         }
     ]
 }
+
