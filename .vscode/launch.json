@@ -18,7 +18,7 @@
             ],
             "program": "${workspaceFolder}/optimize.js",
             "cwd": "${workspaceFolder}/../ford-path.mod/",
-            "args": ["apps/ford-path", "-t", "${workspaceFolder}/../ford-path.mod/builds/"]
+            "args": ["apps/ford-path", "-t", "${workspaceFolder}/../ford-path.mod/builds"]
         }
     ]
 }
