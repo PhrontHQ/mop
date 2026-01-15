@@ -19,7 +19,7 @@
             "runtimeVersion": "22",
             "program": "${workspaceFolder}/optimize.js",
             "cwd": "${workspaceFolder}/../ford-path.mod/",
-            "args": ["apps/ford-path", "-o", "0", "-t", "${workspaceFolder}/../ford-path.mod/builds"]
+            "args": ["apps/ford-path", "-o", "1", "-t", "${workspaceFolder}/../ford-path.mod/builds"]
         },
         {
             "type": "node",
