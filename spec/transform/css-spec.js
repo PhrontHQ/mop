@@ -59,7 +59,7 @@ describe("transform/css", function () {
 
         var output = rebaseCss(input, fileMock, config);
         expect(output).toBe(input);
-        expect(warnings[0]).toBe("CSS compression error: test.css");
+        expect(warnings[0]).toBe("CSS parse error: test.css");
         // This passes at time of writing but would be overspecifying. CSSO is
         // at liberty to change this, or even fix the problem in the future:
         //expect(warnings[1]).toBe("Cannot read property 'length' of undefined");
@@ -67,6 +67,12 @@ describe("transform/css", function () {
 
     it("rebases unquoted URIs", function () {
         var input = "body{background: url(fail)}";
+        var output = rebaseCss(input, fileMock, {});
+        expect(output).toBe("body{background:url(pass)}");
+    });
+
+    it("rebases quoted URIs", function () {
+        var input = 'body{background: url("fail")}';
         var output = rebaseCss(input, fileMock, {});
         expect(output).toBe("body{background:url(pass)}");
     });
