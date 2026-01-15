@@ -8,6 +8,32 @@
             "cwd": "${env:POPCORN_APP_LOCATION}",
             "program": "${workspaceFolder}/optimize.js",
             "envFile": "${workspaceFolder}/.env.local"
+        },
+        {
+            "type": "node",
+            "request": "launch",
+            "name": "Build Ford Path",
+            "skipFiles": [
+                "<node_internals>/**"
+            ],
+            "runtimeVersion": "22",
+            "program": "${workspaceFolder}/optimize.js",
+            "cwd": "${workspaceFolder}/../ford-path.mod/",
+            "args": ["apps/ford-path", "-o", "0", "-t", "${workspaceFolder}/../ford-path.mod/builds"]
+        },
+        {
+            "type": "node",
+            "request": "launch",
+            "name": "Run Tests",
+            "skipFiles": [
+                "<node_internals>/**"
+            ],
+            "runtimeExecutable": "npm",
+            "runtimeVersion": "22",
+            "runtimeArgs": [
+                "test"
+            ],
+            "console": "integratedTerminal"
         }
     ]
 }
