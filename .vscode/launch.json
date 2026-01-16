@@ -7,19 +7,8 @@
             "name": "Mop Popcorn App",
             "cwd": "${env:POPCORN_APP_LOCATION}",
             "program": "${workspaceFolder}/optimize.js",
+            "args": [".", "-o", "1"],
             "envFile": "${workspaceFolder}/.env.local"
-        },
-        {
-            "type": "node",
-            "request": "launch",
-            "name": "Build Ford Path",
-            "skipFiles": [
-                "<node_internals>/**"
-            ],
-            "runtimeVersion": "22",
-            "program": "${workspaceFolder}/optimize.js",
-            "cwd": "${workspaceFolder}/../ford-path.mod/",
-            "args": ["apps/ford-path", "-o", "1", "-t", "${workspaceFolder}/../ford-path.mod/builds"]
         },
         {
             "type": "node",
